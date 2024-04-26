@@ -1,0 +1,89 @@
+<div class="admin-container" *ngIf="isAdmin">
+  <p>Ha iniciado sesión con rol de administrador.</p>
+  <p>
+    En la aplicación existe un total de {{ totalUsuarios }} usuarios
+    registrados.
+  </p>
+</div>
+
+<app-anual></app-anual>
+
+<div class="calendar">
+  <div class="row">
+    <div class="column" id="colum1">
+      <a [routerLink]="'/inicio/enero'" routerLinkActive="router-link-active" >
+        Enero
+      </a>
+    </div>
+    <div class="column">
+      <a [routerLink]="'/inicio/febrero'" routerLinkActive="router-link-active">
+        Febrero
+      </a>
+    </div>
+    <div class="column">
+      <a [routerLink]="'/inicio/marzo'" routerLinkActive="router-link-active"
+        >Marzo
+      </a>
+    </div>
+    <div class="column" id="colum2">
+      <a [routerLink]="'/inicio/abril'" routerLinkActive="router-link-active"
+        >Abril
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <a [routerLink]="'/inicio/mayo'" routerLinkActive="router-link-active"
+        >Mayo
+      </a>
+    </div>
+    <div class="column">
+      <a [routerLink]="'/inicio/junio'" routerLinkActive="router-link-active"
+        >Junio
+      </a>
+    </div>
+    <div class="column">
+      <a [routerLink]="'/inicio/julio'" routerLinkActive="router-link-active"
+        >Julio
+      </a>
+    </div>
+    <div class="column">
+      <a [routerLink]="'/inicio/agosto'" routerLinkActive="router-link-active"
+        >Agosto
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column" id="colum3">
+      <a
+        [routerLink]="'/inicio/septiembre'"
+        routerLinkActive="router-link-active"
+        >Septiembre
+      </a>
+    </div>
+    <div class="column">
+      <a [routerLink]="'/inicio/octubre'" routerLinkActive="router-link-active"
+        >Octubre
+      </a>
+    </div>
+    <div class="column">
+      <a
+        [routerLink]="'/inicio/noviembre'"
+        routerLinkActive="router-link-active"
+        >Noviembre
+      </a>
+    </div>
+    <div class="column" id="colum4">
+      <a
+        [routerLink]="'/inicio/diciembre'"
+        routerLinkActive="router-link-active"
+        >Diciembre
+      </a>
+    </div>
+  </div>
+</div>
+<div class="foot">
+  <app-footer></app-footer>
+</div>
+
+<router-outlet></router-outlet>

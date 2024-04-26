@@ -1,0 +1,74 @@
+body {
+  background-image: linear-gradient(to top right, rgb(165, 192, 233), #fff);
+}
+.title-eslogan {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 35vh;
+  margin: 0 auto;
+}
+
+.eslogan {
+  text-align: center;
+  margin: 0;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 50px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),
+    -3px -3px 6px rgba(255, 255, 255, 0.7);
+}
+
+.description {
+  width: 50%;
+  text-align: left;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+h3 {
+  font-size: 22px;
+  font-style: italic;
+}
+
+.container-app {
+  display: flex;
+  width: 100%;
+}
+
+.form-img {
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos a los extremos */
+  padding: 10px;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-app {
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinea los elementos verticalmente */
+}
+
+.login-form {
+  order: 1;
+  text-align: center;
+}
+
+.img-diapositiva {
+  order: 2;
+}
+
+.img-diapositiva img {
+  height: 570px;
+  width: auto;
+  border-radius: 100%;
+  margin-left: 170px;
+  margin-top: -70px;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.4);
+}

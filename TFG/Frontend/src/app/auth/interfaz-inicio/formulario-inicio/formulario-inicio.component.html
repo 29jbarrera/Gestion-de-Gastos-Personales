@@ -1,0 +1,40 @@
+  <section>
+    <form
+      class="formulario"
+      autocomplete="off"
+      [formGroup]="myForm"
+      id="formulario"
+    >
+      <h4>Inicia sesión</h4>
+
+      <div class="mb-3">
+        <input
+          type="email"
+          name="email"
+          formControlName="email"
+          placeholder="Introduce tu email"
+          required
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="mb-3">
+        <input
+          type="password"
+          name="password"
+          formControlName="password"
+          placeholder="Contraseña"
+          required
+          autocomplete="off"
+        />
+      </div>
+
+      <button (click)="login()" class="btn btn-primary">Iniciar sesión</button>
+
+      <div class="sing-up">
+        ¿No tienes cuenta?
+        <a routerLink="/register">Registrate aquí</a>
+      </div>
+    </form>
+  </section>
+<router-outlet></router-outlet>

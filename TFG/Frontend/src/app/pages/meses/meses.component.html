@@ -1,0 +1,164 @@
+<div class="ObjetivodeAhorro">
+  <form id="objetivo-ahorro" autocomplete="off" [formGroup]="objetivoAhorro">
+    <input
+      class="i2"
+      name="objetivo"
+      type="number"
+      placeholder="        -- €"
+      formControlName="objetivo"
+    />
+    <button class="agregar-objetivo" type="submit" (click)="agregarObjetivo()">
+      Establecer objetivo de ahorro
+    </button>
+  </form>
+</div>
+
+<div class="formI-G">
+  <form id="gastos-ingresos" autocomplete="off" [formGroup]="gastosIngresos">
+    <!-- incluir codigo para introducir datos en BD -->
+    <div class="d1">
+      <div class="i1-div">
+        <input
+          class="i1"
+          id="description"
+          name="description"
+          type="text"
+          placeholder="  Descripción"
+          formControlName="description"
+        />
+      </div>
+      <div class="i2-div">
+        <input
+          class="i2"
+          name="importe"
+          type="number"
+          placeholder="        -- €"
+          formControlName="importe"
+        />
+      </div>
+    </div>
+
+    <br />
+    <div class="d2">
+      <div class="agregar-gasto-div">
+        <button class="agregar-gasto" type="submit" (click)="agregarGasto()">
+          Agregar gasto
+        </button>
+      </div>
+      <div class="agregar-ingreso-div">
+        <button
+          class="agregar-ingreso"
+          type="submit"
+          (click)="agregarIngreso()"
+        >
+          Agregar ingreso
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="row">
+  <div class="col text-danger">
+    <p *ngIf="descriptionNoValida('description')">
+      * La descripción es obligatoria y debe tener mínimo 3 caracteres.
+    </p>
+    <p *ngIf="importeNoValido('importe')">* El importe es obligatorio.</p>
+  </div>
+
+  <div>
+    <hr class="linea-separacion" />
+  </div>
+
+  <!-- LO QUE DEBE DE PINTAR CADA VES QUE SE UTILIZA CUALQUIER FORMULARIO-->
+
+  <div class="lista-container">
+    <div class="objetivo-container">
+      <h3>Objetivo Mensual Establecido</h3>
+      <div *ngFor="let objetivo of objetivos">
+        <p>
+          <span class="importe">{{
+            objetivo.objetivo | currency : "EUR" : "symbol"
+          }}</span>
+        </p>
+      </div>
+    </div>
+
+    <div><hr class="linea-separacion3" /></div>
+
+    <div class="gasto-container">
+      <h3>Listado de Gastos</h3>
+      <div class="gasto-container-lista" *ngFor="let gasto of gastos">
+        <p class="fecha-gasto">
+          {{ gasto.Fecha }}
+          <span class="descrption-gasto">
+            {{ gasto.description }}
+          </span>
+          <span class="importe">{{
+            gasto.importe | currency : "EUR" : "symbol"
+          }}</span
+          ><button class="button-papelera" (click)="eliminarGasto(gasto._id)">
+            <img class="papelera" src="\assets\images\borrar.png" />
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <div><hr class="linea-separacion3" /></div>
+
+    <div class="ingreso-container">
+      <h3>Listado de Ingresos</h3>
+      <div class="gasto-container-lista" *ngFor="let ingreso of ingresos">
+        <p class="fecha-importe">
+          {{ ingreso.Fecha }} {{ ingreso.description }}
+          <span class="importe">{{
+            ingreso.importe | currency : "EUR" : "symbol"
+          }}</span
+          ><button
+            class="button-papelera"
+            (click)="eliminarIngreso(ingreso._id)"
+          >
+            <img class="papelera" src="\assets\images\borrar.png" />
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="resumen-mensual">
+    <h1>Resumen Mensual {{ ultimoSegmentoURL }}</h1>
+    <div class="ingreso-mensual">
+      <p>Total de ingresos</p>
+      <p>{{ totalIngresos | number : "1.2-2" }} €</p>
+      <!-- Incluir la lógica para la suma de todos los ingresos  -->
+    </div>
+
+    <div class="gasto-mensual">
+      <p>Total de gastos</p>
+      <p>{{ totalGastos | number : "1.2-2" }} €</p>
+      <!-- Incluir la lógica para la suma de todos los gastos  -->
+    </div>
+  </div>
+  <div><hr class="linea-separacion3" /></div>
+
+  <div class="ahorro">
+    <p>
+      Tienes un ahorro de
+      {{ totalIngresos - totalGastos | number : "1.2-2" }} €
+    </p>
+  </div>
+
+  <div *ngFor="let objetivo of objetivos">
+    <div *ngIf="totalIngresos - totalGastos > objetivo.objetivo">
+      <p>¡Enhorabuena!, estas superando tu objetivo de ahorro sigue así.</p>
+    </div>
+    <div *ngIf="totalIngresos - totalGastos <= objetivo.objetivo">
+      <p>Sigue trabajando para alcanzar tu objetivo de ahorro.</p>
+    </div>
+  </div>
+</div>
+<div class="foot">
+  <app-footer></app-footer>
+</div>
+
+<router-outlet></router-outlet>

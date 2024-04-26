@@ -1,0 +1,81 @@
+<body>
+  <div class="engloba">
+    <section>
+      <form class="formulario" autocomplete="off" [formGroup]="registerForm">
+        <h4>Registrate aquí</h4>
+
+        <div class="mb-3">
+          <input
+            type="text"
+            id="nombre"
+            formControlName="nombre"
+            placeholder="Introduce tu nombre"
+            required
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Introduce tu email"
+            required
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            placeholder="Contraseña"
+            required
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="password"
+            id="password2"
+            formControlName="password2"
+            placeholder="Confirmar contraseña"
+            required
+            autocomplete="off"
+          />
+        </div>
+
+        <button (click)="crearUsuario()" class="btn btn-primary">
+          Registrate
+        </button>
+
+        <div class="mb-4">
+          <a routerLink="/">Página de inicio</a>
+        </div>
+
+        <div class="row">
+          <div class="col text-danger">
+            <p *ngIf="campoNoValido('nombre')">
+              * El nombre es obligatorio y debe tener mínimo 3 caracteres
+            </p>
+            <p *ngIf="campoNoValido('email')">
+              * El email es obligatorio y tiene que ser válido
+            </p>
+            <p *ngIf="campoNoValido('password')">
+              * La contraseña es obligatoria y debe de tener mínimo 4 caracteres
+            </p>
+            <p *ngIf="campoNoValido('password2')">
+              * Debe de confirma la contraseña
+            </p>
+            <p *ngIf="contrasenaNoValida()">
+              * Las contraseñas deben de ser iguales
+            </p>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+</body>

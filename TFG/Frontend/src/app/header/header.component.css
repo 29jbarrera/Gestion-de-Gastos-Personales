@@ -1,0 +1,62 @@
+body {
+  background-color: var(--color-primary);
+}
+.nav {
+  margin: 0 auto;
+  background-color: var(--color-primary);
+  height: 18vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  color: var(--color-background);
+  border-bottom: 6px solid #dce2f0;
+}
+
+.nav .inicio,
+.nav .año,
+.nav .nombre-usuario {
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+}
+
+.inicio {
+  color: var(--color-background);
+  text-decoration: none;
+  transition: transform 0.4s;
+  font-size: 20px;
+}
+
+.inicio:hover {
+  transform: scale(1.2);
+}
+
+.year {
+  font-size: 50px;
+}
+
+.nombre-usuario {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.cerrar-sesion {
+  display: inline-block;
+  width: 180px;
+  height: 35px;
+  margin-left: 78%;
+  font-size: 20px;
+  background-color: rgb(22, 45, 79, 0.9);
+  color: var(--color-background);
+  transition: background-color 0.5s;
+  border-bottom-left-radius: 10px; /* Radio de borde de 5px en la esquina inferior izquierda */
+  border-bottom-right-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cerrar-sesion:hover {
+  background-color: var(--color-botons);
+}
