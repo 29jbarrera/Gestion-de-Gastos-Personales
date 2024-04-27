@@ -150,6 +150,11 @@ button {
 }
 
 /* LISTADO DE GASTOS E INGRESOS  */
+
+h3 {
+  padding: 15px;
+}
+
 .lista-container {
   text-align: center;
   margin: 20px auto;
@@ -157,23 +162,80 @@ button {
   font-weight: lighter;
 }
 
+/* CONTAINER DEL LISTADO DE GASTOS */
 
-.importe {
-  margin-left: 10px;
+.gasto-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.descrption-gasto {
-  margin-left: 100px;
+.gasto-container-lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.gasto-container-lista p {
+  margin: 0;
+}
+
+.fecha-gasto,
+.importe {
+  margin: 0;
 }
 
 .gasto-container .importe {
-  color: red;
-  margin-left: 100px;
+  margin-right: -170px;
 }
 
-.ingreso-container .importe {
+/* CONTAINER DEL LISTADO DE INGRESOS */
+
+.ingreso-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingreso-container-lista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.ingreso-container-lista p {
+  margin: 0;
+}
+
+.fecha-importe,
+.importe {
+  margin: 0;
+}
+
+.fecha-importe {
+  flex: 1;
+}
+
+.importe {
+  flex: 0.7;
+}
+.button-papelera {
+  flex: 0.1;
+}
+.descripcion-importe {
+  flex: 3;
+}
+
+/* APLICAR COLORES A IMPORTES DIFERENTES */
+
+#importe-gasto{
+  color: red;
+}
+
+#importe-ingreso {
   color: green;
-  margin-left: 100px;
 }
 
 .objetivo-container .importe {
@@ -185,12 +247,11 @@ button {
   border: none;
   padding: 0;
   vertical-align: middle;
-  margin-top: -4px;
-  margin-left: 30px;
   float: right;
 }
 
 .papelera {
+  margin-right: 8px;
   display: block;
   height: 30px;
   width: 30px;
@@ -204,6 +265,7 @@ button {
 }
 
 /* RESUMEN MENSUAL  */
+
 .resumen-mensual {
   text-align: center;
 }
@@ -223,21 +285,29 @@ p {
   display: flex;
 }
 
+.total-ingresos {
+  color: green;
+}
+
+.total-gastos {
+  color: red;
+}
+
+.total-ahorro {
+  color: blue;
+  font-size: 24px;
+}
+
 .linea-separacion3 {
   padding: 10px;
-  width: 50%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 30px;
-  border: none;
   border-top: 2px solid var(--color-primary);
 }
 
-h3 {
-  padding: 15px;
-}
-
 .ahorro {
-  padding-bottom: 80px;
+  padding: 10px;
   display: flex;
   margin: 0 auto;
 }
@@ -253,4 +323,9 @@ h3 {
 
 .col {
   text-align: center;
+}
+
+.mensaje-por-ahorro {
+  display: flex;
+  margin: 0 auto;
 }

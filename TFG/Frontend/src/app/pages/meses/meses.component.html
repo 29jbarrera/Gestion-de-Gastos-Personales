@@ -86,21 +86,17 @@
 
     <div><hr class="linea-separacion3" /></div>
 
-    <div class="gasto-container">
+    <div class="ingreso-container">
       <h3>Listado de Gastos</h3>
-      <div class="gasto-container-lista" *ngFor="let gasto of gastos">
-        <p class="fecha-gasto">
-          {{ gasto.Fecha }}
-          <span class="descrption-gasto">
-            {{ gasto.description }}
-          </span>
-          <span class="importe">{{
-            gasto.importe | currency : "EUR" : "symbol"
-          }}</span
-          ><button class="button-papelera" (click)="eliminarGasto(gasto._id)">
-            <img class="papelera" src="\assets\images\borrar.png" />
-          </button>
+      <div class="ingreso-container-lista" *ngFor="let gasto of gastos">
+        <p class="fecha-importe">{{ gasto.Fecha }}</p>
+        <p class="descripcion-importe">{{ gasto.description }}</p>
+        <p class="importe" id="importe-gasto">
+          {{ gasto.importe | currency : "EUR" : "symbol" }}
         </p>
+        <button class="button-papelera" (click)="eliminarGasto(gasto._id)">
+          <img class="papelera" src="\assets\images\borrar.png" />
+        </button>
       </div>
     </div>
 
@@ -108,47 +104,44 @@
 
     <div class="ingreso-container">
       <h3>Listado de Ingresos</h3>
-      <div class="gasto-container-lista" *ngFor="let ingreso of ingresos">
-        <p class="fecha-importe">
-          {{ ingreso.Fecha }} {{ ingreso.description }}
-          <span class="importe">{{
-            ingreso.importe | currency : "EUR" : "symbol"
-          }}</span
-          ><button
-            class="button-papelera"
-            (click)="eliminarIngreso(ingreso._id)"
-          >
-            <img class="papelera" src="\assets\images\borrar.png" />
-          </button>
+      <div class="ingreso-container-lista" *ngFor="let ingreso of ingresos">
+        <p class="fecha-importe">{{ ingreso.Fecha }}</p>
+        <p class="descripcion-importe">{{ ingreso.description }}</p>
+        <p class="importe" id="importe-ingreso">
+          {{ ingreso.importe | currency : "EUR" : "symbol" }}
         </p>
+        <button class="button-papelera" (click)="eliminarIngreso(ingreso._id)">
+          <img class="papelera" src="\assets\images\borrar.png" />
+        </button>
       </div>
     </div>
+
+    <div><hr class="linea-separacion3" /></div>
   </div>
 
   <div class="resumen-mensual">
     <h1>Resumen Mensual {{ ultimoSegmentoURL }}</h1>
     <div class="ingreso-mensual">
       <p>Total de ingresos</p>
-      <p>{{ totalIngresos | number : "1.2-2" }} €</p>
+      <p class="total-ingresos">{{ totalIngresos | number : "1.2-2" }} €</p>
       <!-- Incluir la lógica para la suma de todos los ingresos  -->
     </div>
 
     <div class="gasto-mensual">
       <p>Total de gastos</p>
-      <p>{{ totalGastos | number : "1.2-2" }} €</p>
+      <p class="total-gastos">{{ totalGastos | number : "1.2-2" }} €</p>
       <!-- Incluir la lógica para la suma de todos los gastos  -->
     </div>
   </div>
   <div><hr class="linea-separacion3" /></div>
 
   <div class="ahorro">
-    <p>
-      Tienes un ahorro de
-      {{ totalIngresos - totalGastos | number : "1.2-2" }} €
+    <p class="total-ahorro">
+      Tienes un ahorro de {{ totalIngresos - totalGastos | number : "1.2-2" }} €
     </p>
   </div>
 
-  <div *ngFor="let objetivo of objetivos">
+  <div class="mensaje-por-ahorro" *ngFor="let objetivo of objetivos">
     <div *ngIf="totalIngresos - totalGastos > objetivo.objetivo">
       <p>¡Enhorabuena!, estas superando tu objetivo de ahorro sigue así.</p>
     </div>
