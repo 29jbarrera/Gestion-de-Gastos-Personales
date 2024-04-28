@@ -20,8 +20,8 @@ import Swal from 'sweetalert2';
 })
 export class FormularioInicioComponent implements OnInit {
   public myForm: FormGroup = this.fb.group({
-    email: ['javier@gmail.com', [Validators.required, Validators.email]],
-    password: ['1313', [Validators.required, Validators.minLength(4)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
   });
 
   constructor(
