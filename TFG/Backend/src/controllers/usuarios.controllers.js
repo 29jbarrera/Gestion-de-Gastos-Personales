@@ -6,7 +6,6 @@ const { generarJWT } = require("../helpers/jwt");
 // Obtener Usuarios
 const getUsuarios = async (req, res) => {
   const desde = Number(req.query.desde) || 0;
-  console.log(desde);
 
   const usuario = await Usuarios.find().skip(desde).limit(20);
 
@@ -33,12 +32,11 @@ const getUsuarioLogeado = async (req, res) => {
       });
     }
 
-    // Enviar solo el nombre del usuario como respuesta
     res.json({
       ok: true,
       nombreUsuario: usuario.nombre,
       idUsuario: usuario.id,
-      role: usuario.role
+      role: usuario.role,
     });
   } catch (error) {
     console.error("Error al obtener el usuario:", error);
@@ -88,46 +86,6 @@ const crearUsuario = async (req, res = response) => {
   }
 };
 
-// Actualizar Usuario
-
-const actualizarUsuario = async (req, res = response) => {
-  // TDO: Validar token y comprobar si el usuario es correcto
-
-  const uid = req.params.id;
-
-  try {
-    const usuarioDB = await Usuarios.findById(uid);
-
-    if (!usuarioDB) {
-      return res.status(404).json({
-        ok: false,
-        msg: "No existe un usuario con ese id",
-      });
-    }
-    // Actualizaciones  //Actualizo contraseña pero se guarda sin encriptarse
-    const campos = req.body;
-
-    if (usuarioDB.email === req.body.email) {
-      delete campos.email;
-    }
-
-    const usuarioActualizado = await Usuarios.findByIdAndUpdate(uid, campos, {
-      new: true,
-    });
-
-    res.json({
-      ok: true,
-      usuario: usuarioActualizado,
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      ok: false,
-      msg: "Error inesperado",
-    });
-  }
-};
-
 // Borrar Usuario
 
 const borrarUsuario = async (req, res = response) => {
@@ -161,7 +119,6 @@ module.exports = {
   // usuariosCtrl
   getUsuarios,
   crearUsuario,
-  actualizarUsuario,
   borrarUsuario,
   getUsuarioLogeado,
 };
