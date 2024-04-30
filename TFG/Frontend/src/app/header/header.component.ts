@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { UsuarioService } from '../services/usuario.service';
 import { MesesComponent } from '../pages/meses/meses.component';
+import { DatosEnLocalStorageService } from '../services/datos-en-local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -12,14 +13,19 @@ import { MesesComponent } from '../pages/meses/meses.component';
 })
 export class HeaderComponent implements OnInit {
   nombreUser = '';
-  yearLocalStore:  string | undefined;
+  yearLocalStore: string = '';
 
-  constructor(private router: Router, private UsuarioService: UsuarioService) {
-    this.router.events.subscribe(event => {
+  constructor(
+    private router: Router,
+    private UsuarioService: UsuarioService,
+    private DatosEnLocalStorageService: DatosEnLocalStorageService
+  ) {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const url = event.url;
         if (url.startsWith('/inicio')) {
-          this.yearLocalStore = localStorage.getItem('year') ?? '';
+          this.yearLocalStore =
+            this.DatosEnLocalStorageService.obtenerYear() ?? '';
         }
       }
     });
@@ -40,5 +46,4 @@ export class HeaderComponent implements OnInit {
       }
     );
   }
-
 }

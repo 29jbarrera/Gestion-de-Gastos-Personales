@@ -8,16 +8,22 @@ import { of } from 'rxjs';
 import { enviroment } from '../environments/enviroment';
 import { Objetivo } from './../interfaces/objetivo-interface';
 
+import { DatosEnLocalStorageService } from './datos-en-local-storage.service';
+
 const base_url = enviroment.base_url;
 
 @Injectable({
   providedIn: 'root',
 })
 export class ObjetivoService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private DatosEnLocalStorageService: DatosEnLocalStorageService,
+  ) {}
 
   crearObjetivo(formData: Objetivo): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return of(null);
     }
@@ -46,7 +52,7 @@ export class ObjetivoService {
   }
 
   obtenerObjetivoPorId(idUsuario: string): Observable<Objetivo[]> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return empty();
     }
@@ -63,7 +69,7 @@ export class ObjetivoService {
   }
 
   actualizarObjetivo(objetivo: Objetivo, objetivoId: string): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token || !objetivoId) {
       return of(null);
     }

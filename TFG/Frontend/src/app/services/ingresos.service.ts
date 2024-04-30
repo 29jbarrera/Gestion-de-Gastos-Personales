@@ -8,16 +8,22 @@ import { of } from 'rxjs';
 import { enviroment } from '../environments/enviroment';
 import { Ingreso } from '../interfaces/ingreso-interface';
 
+import { DatosEnLocalStorageService } from './datos-en-local-storage.service';
+
 const base_url = enviroment.base_url;
 
 @Injectable({
   providedIn: 'root',
 })
 export class IngresosService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private DatosEnLocalStorageService: DatosEnLocalStorageService
+  ) {}
 
   crearIngreso(formData: Ingreso): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return of(null);
     }
@@ -46,7 +52,7 @@ export class IngresosService {
   }
 
   obtenerIngresoPorId(idUsuario: string): Observable<Ingreso[]> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return empty();
     }
@@ -63,7 +69,7 @@ export class IngresosService {
   }
 
   eliminarIngreso(idIngreso: string): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return of(null);
     }

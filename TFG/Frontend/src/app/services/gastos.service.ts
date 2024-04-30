@@ -8,16 +8,22 @@ import { of } from 'rxjs';
 import { enviroment } from '../environments/enviroment';
 import { Gasto } from '../interfaces/gasto-interface';
 
+import { DatosEnLocalStorageService } from './datos-en-local-storage.service';
+
 const base_url = enviroment.base_url;
 
 @Injectable({
   providedIn: 'root',
 })
 export class GastosService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private DatosEnLocalStorageService: DatosEnLocalStorageService
+  ) {}
 
   crearGasto(formData: Gasto): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return of(null);
     }
@@ -46,7 +52,7 @@ export class GastosService {
   }
 
   obtenerGastosPorId(idUsuario: string): Observable<Gasto[]> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return empty();
     }
@@ -57,13 +63,16 @@ export class GastosService {
     return this.http.get<any>(`${base_url}/gastos/${idUsuario}`).pipe(
       map((response) => response.gastos),
       map((gastos: Gasto[]) =>
-        gastos.filter((gasto) => gasto.mes === ultimoSegmentoURL && gasto.year === yearNumber)
+        gastos.filter(
+          (gasto) =>
+            gasto.mes === ultimoSegmentoURL && gasto.year === yearNumber
+        )
       )
     );
   }
 
   eliminarGasto(idGasto: string): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return of(null);
     }
