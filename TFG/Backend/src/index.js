@@ -21,8 +21,6 @@ app.use("/api/gastos", require("./routes/gastos.routes"));
 
 app.use("/api/ingresos", require("./routes/ingresos.routes"));
 
-app.use("/api/todo", require("./routes/busquedas.routes"));
-
 app.use("/api/objetivo", require("./routes/objetivo.routes"))
 
 app.set("port", process.env.PORT || 3001);
