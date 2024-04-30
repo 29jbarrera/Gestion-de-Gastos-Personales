@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
@@ -9,8 +9,6 @@ import { enviroment } from '../environments/enviroment';
 
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { loginForm } from '../interfaces/login-form.interface';
-import { Usuario } from '../models/usuario.model';
-import { response } from 'express';
 
 const base_url = enviroment.base_url;
 
@@ -92,19 +90,19 @@ export class UsuarioService {
           const nombreUsuario = response.nombreUsuario;
           const idUsuario = response.idUsuario;
           const role = response.role;
-          localStorage.setItem('nombreUsuario', nombreUsuario);
           localStorage.setItem('idUsuario', idUsuario);
-          localStorage.setItem('role', role);
 
-          return { nombreUsuario, idUsuario };
+          return { nombreUsuario, idUsuario, role };
         })
       );
   }
 
   // VERIFICAR SI ES ADMINISTRADOR
-  isAdmin(): boolean {
-    const role = localStorage.getItem('role');
-    return role === 'admin';
+  isAdminCheck(): Observable<boolean> {
+    return this.obtenerDatosUsuario().pipe(
+      map((usuario) => usuario && usuario.role === 'admin'),
+      catchError(() => of(false)) // Manejo de errores, devuelve false si hay algún error
+    );
   }
 
   // OBTENER TOTAL DE USUARIO REGISTRADOS
@@ -118,12 +116,10 @@ export class UsuarioService {
       'Content-Type': 'application/json',
       'x-token': token,
     });
-    return this.http
-      .get(`${base_url}/usuarios`,{ headers })
-      .pipe(
-        map((response: any) => {
-          return response.total;
-        })
-      );
+    return this.http.get(`${base_url}/usuarios`, { headers }).pipe(
+      map((response: any) => {
+        return response.total;
+      })
+    );
   }
 }

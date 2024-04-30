@@ -38,9 +38,9 @@ export class CalendarInicioComponent implements OnInit {
   }
 
   verificarRol(): void {
-    if (this.UsuarioService.isAdmin()) {
-      this.isAdmin = true;
-      return;
+    if (this.UsuarioService.isAdminCheck().subscribe(isAdmin => {
+      this.isAdmin = isAdmin;
+    })) {
     }
   }
 
