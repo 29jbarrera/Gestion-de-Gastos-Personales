@@ -9,6 +9,7 @@ import { MesesComponent } from './pages/meses/meses.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
+import { AhorroAnualComponent } from './pages/ahorro-anual/ahorro-anual.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'octubre', component: MesesComponent },
       { path: 'noviembre', component: MesesComponent },
       { path: 'diciembre', component: MesesComponent },
+      { path: 'ahorro-anual', component: AhorroAnualComponent },
     ],
   },
   { path: 'register', component: RegisterComponent },

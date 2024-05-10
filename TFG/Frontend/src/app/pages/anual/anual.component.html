@@ -2,4 +2,6 @@
   <select id="yearSelector" (change)="yearSeleccionado($event)">
     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
   </select>
+
+  <button (click)="navigateToAhorroAnual()">Resumen total de ahorro anual</button>
 </div>
