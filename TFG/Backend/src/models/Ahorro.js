@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
-const ObjetivoSchema = new Schema({
-  objetivo: {
+const AhorroSchema = new Schema({
+  Ahorro: {
     type: Number,
     required: true,
   },
@@ -25,4 +25,4 @@ ObjetivoSchema.method("toJSON", function () {
   return object;
 });
 
-module.exports = model("Objetivo", ObjetivoSchema, "Objetivo");
+module.exports = model("Ahorro", AhorroSchema, "Ahorro");

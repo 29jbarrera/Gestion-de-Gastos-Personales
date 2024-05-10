@@ -23,6 +23,8 @@ app.use("/api/ingresos", require("./routes/ingresos.routes"));
 
 app.use("/api/objetivo", require("./routes/objetivo.routes"))
 
+app.use("/api/ahorro", require("./routes/ahorro.routes"))
+
 app.set("port", process.env.PORT || 3001);
 app.listen(app.get("port"), () => {
   console.log("Servidor corriendo en el puerto", app.get("port"));

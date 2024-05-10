@@ -4,6 +4,7 @@ import { CalendarInicioComponent } from '../calendar-inicio/calendar-inicio.comp
 import { Router } from '@angular/router';
 
 import { AnualService } from '../../services/anual.service';
+import { DatosEnLocalStorageService } from '../../services/datos-en-local-storage.service';
 
 @Component({
   selector: 'app-anual',
@@ -15,7 +16,7 @@ import { AnualService } from '../../services/anual.service';
 export class AnualComponent implements OnInit {
   years: number[] = [];
 
-  constructor(private AnualService: AnualService, private router: Router) {}
+  constructor(private AnualService: AnualService, private router: Router,private DatosEnlocalStorageService: DatosEnLocalStorageService) {}
 
   ngOnInit(): void {
     this.fillYears();
@@ -31,7 +32,7 @@ export class AnualComponent implements OnInit {
 
   yearSeleccionado(event: any): void {
     const selectedYear = parseInt(event.target.value, 10);
-    this.DatosEnLocalStorageService.guardarYear(selectedYear);
+    this.DatosEnlocalStorageService.guardarYear(selectedYear);
   }
 
   navigateToAhorroAnual(): void {
