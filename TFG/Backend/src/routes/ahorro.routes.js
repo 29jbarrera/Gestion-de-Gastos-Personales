@@ -11,7 +11,7 @@ const {
     getAhorro,
     crearAhorro,
     obtenerAhorroPorId
-} = require('../controllers/objetivo.controllers')
+} = require('../controllers/ahorro.controllers')
 
 const  router = Router()
 
@@ -22,7 +22,6 @@ router.get("/:idUsuario", obtenerAhorroPorId);
 router.post('/',
 [
     validarJWT,
-    check('ahorro','El objetivo es necesario').not().isEmpty(),
     validarCampos
 ],
 crearAhorro);

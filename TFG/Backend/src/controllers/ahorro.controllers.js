@@ -1,30 +1,37 @@
 const { response } = require("express");
-
-const Ahorro = require("../models/Ahorro")
+const Ahorro = require("../models/Ahorro");
 
 const getAhorro = async (req, res = response) => {
-  const objetivo = await Objetivo.find().populate("usuario", "email");
+  try {
+    const objetivos = await Ahorro.find().populate("usuario", "email");
 
-  res.json({
-    ok: true,
-    objetivo,
-  });
+    res.json({
+      ok: true,
+      objetivos,
+    });
+  } catch (error) {
+    console.error("Error al obtener el ahorro:", error);
+    res.status(500).json({
+      ok: false,
+      msg: "Error al obtener el ahorro",
+    });
+  }
 };
 
-const obtenerahorroPorId = async (req, res = response) => {
+const obtenerAhorroPorId = async (req, res = response) => {
   try {
     const idUsuario = req.params.idUsuario;
 
-    const ahorro = await Objetivo.find({ usuario: idUsuario }).populate(
-      "ahorro"
+    const ahorros = await Ahorro.find({ usuario: idUsuario }).populate(
+      "usuario"
     );
 
     res.json({
       ok: true,
-      objetivo,
+      ahorros,
     });
   } catch (error) {
-    console.error("error al obtener el ahorro por id:", error);
+    console.error("Error al obtener el ahorro por id:", error);
     res.status(500).json({
       ok: false,
       msg: "Error al obtener el ahorro por id",
@@ -34,36 +41,36 @@ const obtenerahorroPorId = async (req, res = response) => {
 
 const crearAhorro = async (req, res = response) => {
   const uid = req.uid;
-  const { mes } = req.body;
-  const { year } = req.body;
+  const { mes, year } = req.body;
 
   try {
-    const AhorroExistente = await ahorro.findOne({ usuario: uid, mes, year });
+    const ahorroExistente = await Ahorro.findOne({ usuario: uid, mes, year });
 
     if (ahorroExistente) {
       return res.status(400).json({
         ok: false,
-        msg: "El usuario ya tiene un ahorro establecido",
+        msg: "El usuario ya tiene un ahorro establecido para este mes y año",
       });
     }
 
-    const ahorro = new Ahorro({
+    const nuevoAhorro = new Ahorro({
       usuario: uid,
       mes,
       year,
-      ...req.body,
+      Ahorro: req.body.Ahorro,
     });
 
-    const ahorroguardado = await objetivo.save();
+    const ahorroGuardado = await nuevoAhorro.save();
 
     res.json({
       ok: true,
-      objetivo: ahorroguardado,
+      ahorro: ahorroGuardado,
     });
   } catch (error) {
+    console.error("Error al crear el ahorro:", error);
     res.status(500).json({
       ok: false,
-      msg: "Hable con el administrador",
+      msg: "Error al crear el ahorro",
     });
   }
 };
@@ -71,5 +78,5 @@ const crearAhorro = async (req, res = response) => {
 module.exports = {
   getAhorro,
   crearAhorro,
-  obtenerahorroPorId,
+  obtenerAhorroPorId,
 };
