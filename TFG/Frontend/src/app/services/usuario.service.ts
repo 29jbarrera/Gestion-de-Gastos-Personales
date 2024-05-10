@@ -1,16 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
 import { enviroment } from '../environments/enviroment';
 
+import { DatosEnLocalStorageService } from './datos-en-local-storage.service';
+
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { loginForm } from '../interfaces/login-form.interface';
-import { Usuario } from '../models/usuario.model';
-import { response } from 'express';
 
 const base_url = enviroment.base_url;
 
@@ -18,19 +18,21 @@ const base_url = enviroment.base_url;
   providedIn: 'root',
 })
 export class UsuarioService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private DatosEnLocalStorageService: DatosEnLocalStorageService
+  ) {}
 
   // CERRAR SESION Y ELIMINAR LOCAL STORE
-
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/');
   }
 
   // VALIDACION DE TOKEN
-
   validartoken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
+    const token = this.DatosEnLocalStorageService.obtenerToken() ?? '';
 
     return this.http
       .get(`${base_url}/login/renew`, {
@@ -47,38 +49,37 @@ export class UsuarioService {
   }
 
   // FUNCION PARA CREAR USUARIO
-
   crearUsuario(formData: RegisterForm) {
     return this.http.post(`${base_url}/usuarios`, formData).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp.token);
+        const token = resp.token;
+        this.DatosEnLocalStorageService.guardarToken(token);
       })
     );
   }
 
   // FUNCION DE LOGEAR USUARIO
-
   login(formData: loginForm): Observable<any> {
-    localStorage.setItem('email', formData.email);
+    this.DatosEnLocalStorageService.guardarEmail(formData.email);
+
     return this.http.post(`${base_url}/login`, formData).pipe(
       tap((resp: any) => {
-        localStorage.setItem('token', resp.token);
-        const currentYear = new Date().getFullYear().toString();
-        localStorage.setItem('year', currentYear);
+        this.DatosEnLocalStorageService.guardarToken(resp.token);
+        const currentYear = new Date().getFullYear();
+        this.DatosEnLocalStorageService.guardarYear(currentYear);
       }),
       map(() => this.obtenerDatosUsuario())
     );
   }
 
   // OBTENER DATOS DE USUARIO LOGEADO Y GUARDADO EN LOCAL STORE
-
   obtenerDatosUsuario(): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return of(null);
     }
 
-    const email = localStorage.getItem('email') || '';
+    const email = this.DatosEnLocalStorageService.obtenerEmail();
     const requestBody = { email };
 
     const headers = new HttpHeaders({
@@ -92,24 +93,24 @@ export class UsuarioService {
           const nombreUsuario = response.nombreUsuario;
           const idUsuario = response.idUsuario;
           const role = response.role;
-          localStorage.setItem('nombreUsuario', nombreUsuario);
-          localStorage.setItem('idUsuario', idUsuario);
-          localStorage.setItem('role', role);
+          this.DatosEnLocalStorageService.guardarIDUsuario(idUsuario);
 
-          return { nombreUsuario, idUsuario };
+          return { nombreUsuario, idUsuario, role };
         })
       );
   }
 
   // VERIFICAR SI ES ADMINISTRADOR
-  isAdmin(): boolean {
-    const role = localStorage.getItem('role');
-    return role === 'admin';
+  isAdminCheck(): Observable<boolean> {
+    return this.obtenerDatosUsuario().pipe(
+      map((usuario) => usuario && usuario.role === 'admin'),
+      catchError(() => of(false))
+    );
   }
 
   // OBTENER TOTAL DE USUARIO REGISTRADOS
   obtenerTotalUsuario(): Observable<any> {
-    const token = localStorage.getItem('token');
+    const token = this.DatosEnLocalStorageService.obtenerToken();
     if (!token) {
       return of(null);
     }
@@ -118,12 +119,10 @@ export class UsuarioService {
       'Content-Type': 'application/json',
       'x-token': token,
     });
-    return this.http
-      .get(`${base_url}/usuarios`,{ headers })
-      .pipe(
-        map((response: any) => {
-          return response.total;
-        })
-      );
+    return this.http.get(`${base_url}/usuarios`, { headers }).pipe(
+      map((response: any) => {
+        return response.total;
+      })
+    );
   }
 }

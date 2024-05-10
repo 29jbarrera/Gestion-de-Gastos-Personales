@@ -21,22 +21,21 @@ export class AnualComponent implements OnInit {
     this.fillYears();
   }
 
-
   fillYears(): void {
-    const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year <= currentYear + 10; year++) {
+    const startYear = 2024;
+    const endYear = startYear + 10;
+    for (let year = startYear; year <= endYear; year++) {
       this.years.push(year);
     }
   }
 
   yearSeleccionado(event: any): void {
-    const selectedYear = event.target.value;
-    localStorage.setItem('year', selectedYear);
+    const selectedYear = parseInt(event.target.value, 10);
+    this.DatosEnLocalStorageService.guardarYear(selectedYear);
   }
 
   navigateToAhorroAnual(): void {
     console.log('Navigating...');
     this.AnualService.navigate();
   }
-
 }

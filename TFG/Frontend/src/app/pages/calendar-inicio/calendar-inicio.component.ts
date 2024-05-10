@@ -3,8 +3,10 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { FooterComponent } from '../../footer/footer.component';
-import { UsuarioService } from '../../services/usuario.service';
 import { AnualComponent } from '../anual/anual.component';
+
+import { UsuarioService } from '../../services/usuario.service';
+import { DatosEnLocalStorageService } from '../../services/datos-en-local-storage.service';
 
 @Component({
   selector: 'app-calendar-inicio',
@@ -19,7 +21,10 @@ export class CalendarInicioComponent implements OnInit {
   selectedYear: number = 0;
   AnualComponent: any;
 
-  constructor(private UsuarioService: UsuarioService) {}
+  constructor(
+    private UsuarioService: UsuarioService,
+    private DatosEnLocalStorageService: DatosEnLocalStorageService
+  ) {}
 
   ngOnInit(): void {
     // LLAMAR A LA FUNCION VERIFICAR ROL
@@ -38,9 +43,11 @@ export class CalendarInicioComponent implements OnInit {
   }
 
   verificarRol(): void {
-    if (this.UsuarioService.isAdmin()) {
-      this.isAdmin = true;
-      return;
+    if (
+      this.UsuarioService.isAdminCheck().subscribe((isAdmin) => {
+        this.isAdmin = isAdmin;
+      })
+    ) {
     }
   }
 
@@ -51,15 +58,9 @@ export class CalendarInicioComponent implements OnInit {
     });
   }
 
-  // GUARDAMOS EL AÑO SELECCIONADO DEL DESPLEGABLE
-  guardarYearSeleccionado(selectedYear: string): void {
-    this.AnualComponent.yearSeleccionado(selectedYear);
-    localStorage.setItem('year', this.selectedYear.toString());
-  }
-
   // ESTABLECEMOS EL AÑO POR DEFECTO CADA VEZ QUE RECARGAMOS LA PÁGINA
   establecerYearPorDefectoAlRecargar(): void {
     const yearActual = new Date().getFullYear();
-    localStorage.setItem('year', yearActual.toString());
+    this.DatosEnLocalStorageService.guardarYear(yearActual);
   }
 }

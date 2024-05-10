@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 import { GastosService } from '../../services/gastos.service';
 import { IngresosService } from '../../services/ingresos.service';
 import { ObjetivoService } from '../../services/objetivo.service';
+import { DatosEnLocalStorageService } from '../../services/datos-en-local-storage.service';
+
 import { Objetivo } from '../../interfaces/objetivo-interface';
 
 @Component({
@@ -53,12 +55,13 @@ export class MesesComponent implements OnInit {
     private GastosService: GastosService,
     private IngresosService: IngresosService,
     private ObjetivoService: ObjetivoService,
-    private router: Router
+    private router: Router,
+    private DatosEnLocalStorageService: DatosEnLocalStorageService
   ) {}
 
   ngOnInit(): void {
     // OBTENER ID USUARIO
-    const idUsuario = localStorage.getItem('idUsuario');
+    const idUsuario = this.DatosEnLocalStorageService.obtenerIdUsuario();
     if (!idUsuario) {
       console.error('No se ha encontrado el idUsuario en el localStorage');
       return;
@@ -158,8 +161,6 @@ export class MesesComponent implements OnInit {
       objetivoExistente._id
     ).subscribe(
       (response) => {
-        console.log('Objetivo del mes ', objetivoExistente.mes); // Utilizamos el mes del objetivo existente
-        console.log('Objetivo actualizado');
         window.location.reload();
       },
       (error) => {
@@ -169,13 +170,11 @@ export class MesesComponent implements OnInit {
   }
 
   // AGREGAR GASTOS
-
   agregarGasto() {
     if (this.gastosIngresos.invalid) {
       console.error('formulario invalido');
       return;
     }
-
     this.GastosService.crearGasto(this.gastosIngresos.value).subscribe(
       (resp: any) => {
         this.gastosIngresos.reset();
@@ -186,11 +185,9 @@ export class MesesComponent implements OnInit {
   }
 
   // ELIMINAR GASTOS
-
   eliminarGasto(idGasto: string): void {
     this.GastosService.eliminarGasto(idGasto).subscribe(
       (response) => {
-        console.log('gasto eliminado');
         window.location.reload();
       },
       (error) => {
@@ -200,13 +197,11 @@ export class MesesComponent implements OnInit {
   }
 
   // AGREGAR INGRESOS
-
   agregarIngreso() {
     if (this.gastosIngresos.invalid) {
       console.error('formulario invalido');
       return;
     }
-
     this.IngresosService.crearIngreso(this.gastosIngresos.value).subscribe(
       (resp: any) => {
         this.gastosIngresos.reset();
@@ -217,11 +212,9 @@ export class MesesComponent implements OnInit {
   }
 
   // ELIMINAR INGRESO
-
   eliminarIngreso(idIngreso: string): void {
     this.IngresosService.eliminarIngreso(idIngreso).subscribe(
       (response) => {
-        console.log('ingreso eliminado');
         window.location.reload();
       },
       (error) => {
@@ -231,7 +224,6 @@ export class MesesComponent implements OnInit {
   }
 
   // VALIDACIÓN FORMULARIO GASTOS INGRESOS
-
   descriptionNoValida(campo: string): boolean {
     const control = this.gastosIngresos.get(campo);
     if (control) {
@@ -249,7 +241,6 @@ export class MesesComponent implements OnInit {
   }
 
   // TOTAL INGRESOS
-
   calcularTotalIngresos() {
     this.totalIngresos = this.ingresos.reduce(
       (total: number, ingreso: any) => total + ingreso.importe,
@@ -266,7 +257,6 @@ export class MesesComponent implements OnInit {
   }
 
   // PINTAR NOMBRE DEL MES
-
   obtenerUltimoSegmentoURL(): string {
     const url = this.router.url;
     const segments = url.split('/');
