@@ -38,8 +38,4 @@ export class AnualComponent implements OnInit {
     const selectedYear = parseInt(event.target.value, 10);
     this.DatosEnlocalStorageService.guardarYear(selectedYear);
   }
-
-  navigateToAhorroAnual(): void {
-    this.AnualService.navigate();
-  }
 }

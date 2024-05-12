@@ -3,11 +3,14 @@ import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { UsuarioService } from '../services/usuario.service';
 import { MesesComponent } from '../pages/meses/meses.component';
 import { DatosEnLocalStorageService } from '../services/datos-en-local-storage.service';
+import { AnualComponent } from '../pages/anual/anual.component';
+import { AnualService } from '../services/anual.service';
+
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, MesesComponent],
+  imports: [RouterModule, MesesComponent,AnualComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -18,7 +21,8 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private UsuarioService: UsuarioService,
-    private DatosEnLocalStorageService: DatosEnLocalStorageService
+    private DatosEnLocalStorageService: DatosEnLocalStorageService,
+    private AnualService: AnualService,
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -45,5 +49,9 @@ export class HeaderComponent implements OnInit {
         console.error('Error al obtener datos del usuario:', error);
       }
     );
+  }
+
+  navigateToAhorroAnual(): void {
+    this.AnualService.navigate();
   }
 }

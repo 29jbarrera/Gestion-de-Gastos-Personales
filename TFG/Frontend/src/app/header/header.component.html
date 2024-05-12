@@ -6,9 +6,11 @@
   >
     Inicio
   </a>
+  <button (click)="navigateToAhorroAnual()">
+    Resumen Anual
+  </button>
   <h1 class="year">{{ yearLocalStore }}</h1>
   <p class="nombre-usuario">Usuario identificado: {{ nombreUser }}</p>
 </div>
 <a (click)="logout()" class="cerrar-sesion">Cerrar sesión</a>
-<br />
 <router-outlet></router-outlet>
