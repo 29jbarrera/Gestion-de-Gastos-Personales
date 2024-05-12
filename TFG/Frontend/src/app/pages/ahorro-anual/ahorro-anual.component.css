@@ -1,0 +1,31 @@
+.div-table{
+  width: 60%;
+}
+
+h2{
+  text-align: center;
+  padding: 30px;
+}
+
+.resumen-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.resumen-header {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 10px;
+}
+
+.resumen-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.resumen-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+

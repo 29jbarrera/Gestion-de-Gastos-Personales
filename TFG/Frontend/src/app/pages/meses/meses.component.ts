@@ -267,6 +267,4 @@ export class MesesComponent implements OnInit {
   private capitalizarPrimeraLetra(texto: string): string {
     return texto.charAt(0).toUpperCase() + texto.slice(1);
   }
-
-  // GUARDAR AHORRO MENSUAL EN BDD
 }

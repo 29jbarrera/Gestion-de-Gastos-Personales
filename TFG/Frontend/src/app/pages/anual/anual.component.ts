@@ -16,7 +16,11 @@ import { DatosEnLocalStorageService } from '../../services/datos-en-local-storag
 export class AnualComponent implements OnInit {
   years: number[] = [];
 
-  constructor(private AnualService: AnualService, private router: Router,private DatosEnlocalStorageService: DatosEnLocalStorageService) {}
+  constructor(
+    private AnualService: AnualService,
+    private router: Router,
+    private DatosEnlocalStorageService: DatosEnLocalStorageService
+  ) {}
 
   ngOnInit(): void {
     this.fillYears();
@@ -36,7 +40,6 @@ export class AnualComponent implements OnInit {
   }
 
   navigateToAhorroAnual(): void {
-    console.log('Navigating...');
     this.AnualService.navigate();
   }
 }
