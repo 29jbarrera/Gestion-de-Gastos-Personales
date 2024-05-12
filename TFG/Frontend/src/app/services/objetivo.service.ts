@@ -19,7 +19,7 @@ export class ObjetivoService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private DatosEnLocalStorageService: DatosEnLocalStorageService,
+    private DatosEnLocalStorageService: DatosEnLocalStorageService
   ) {}
 
   crearObjetivo(formData: Objetivo): Observable<any> {
@@ -63,7 +63,10 @@ export class ObjetivoService {
     return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
       map((response) => response.objetivo),
       map((objetivo: Objetivo[]) =>
-        objetivo.filter((objetivo) => objetivo.mes === ultimoSegmentoURL && objetivo.year === yearNumber)
+        objetivo.filter(
+          (objetivo) =>
+            objetivo.mes === ultimoSegmentoURL && objetivo.year === yearNumber
+        )
       )
     );
   }
@@ -81,5 +84,161 @@ export class ObjetivoService {
     return this.http.put(`${base_url}/objetivo/${objetivoId}`, objetivo, {
       headers,
     });
+  }
+
+  // OBJETIVOS POR AÑOS RESUMEN
+
+  obtenerObjetivoPorId2024(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2024)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2025(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2025)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2026(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2026)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2027(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2027)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2028(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2028)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2029(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2029)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2030(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2030)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2031(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2031)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2032(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2032)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2033(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2033)
+      )
+    );
+  }
+
+  obtenerObjetivoPorId2034(idUsuario: string): Observable<Objetivo[]> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return empty();
+    }
+
+    return this.http.get<any>(`${base_url}/objetivo/${idUsuario}`).pipe(
+      map((response) => response.objetivo),
+      map((objetivo: Objetivo[]) =>
+        objetivo.filter((objetivo) => objetivo.year === 2034)
+      )
+    );
   }
 }

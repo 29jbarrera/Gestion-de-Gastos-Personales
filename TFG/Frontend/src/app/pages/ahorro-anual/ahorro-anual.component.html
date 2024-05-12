@@ -8,84 +8,304 @@
       <td>TOTAL INGRESADO</td>
       <td>TOTAL GASTADO</td>
       <td>AHORRO</td>
-      <td>OBJETIVO</td>
+      <td>OBJETIVO SUPERADO</td>
     </tr>
     <tr>
       <td>2024</td>
-      <td>{{ totalIngreso2024 }} €</td>
-      <td>{{ totalImporte2024 }} €</td>
-      <td>{{ totalIngreso2024 - totalImporte2024 }} €</td>
-      <td>Estrella</td>
+      <td class="ingreso">{{ totalIngreso2024 }} €</td>
+      <td class="gasto">{{ totalImporte2024 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2024 - totalImporte2024 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2024 - totalImporte2024 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2024 - totalImporte2024 <= totalObjetivo2024"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2024 - totalImporte2024 > totalObjetivo2024"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2024 }} €</td>
     </tr>
     <tr>
       <td>2025</td>
-      <td>{{ totalIngreso2025 }} €</td>
-      <td>{{ totalImporte2025 }} €</td>
-      <td>{{ totalIngreso2025 - totalImporte2025 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2025 }} €</td>
+      <td class="gasto">{{ totalImporte2025 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2025 - totalImporte2025 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2025 - totalImporte2025 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2025 - totalImporte2025 <= totalObjetivo2025"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2025 - totalImporte2025 > totalObjetivo2025"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2025 }} €</td>
     </tr>
     <tr>
       <td>2026</td>
-      <td>{{ totalImporte2026 }} €</td>
-      <td>{{ totalIngreso2026 }} €</td>
-      <td>{{ totalIngreso2026 - totalImporte2026 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2026 }} €</td>
+      <td class="gasto">{{ totalImporte2026 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2026 - totalImporte2026 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2026 - totalImporte2026 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2026 - totalImporte2026 <= totalObjetivo2026"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2026 - totalImporte2026 > totalObjetivo2026"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2026 }} €</td>
     </tr>
     <tr>
       <td>2027</td>
-      <td>{{ totalIngreso2027 }} €</td>
-      <td>{{ totalImporte2027 }} €</td>
-      <td>{{ totalIngreso2027 - totalImporte2027 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2027 }} €</td>
+      <td class="gasto">{{ totalImporte2027 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2027 - totalImporte2027 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2027 - totalImporte2027 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2027 - totalImporte2027 <= totalObjetivo2027"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2027 - totalImporte2027 > totalObjetivo2027"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2027 }} €</td>
     </tr>
     <tr>
       <td>2028</td>
-      <td>{{ totalIngreso2028 }} €</td>
-      <td>{{ totalImporte2028 }} €</td>
-      <td>{{ totalIngreso2028 - totalImporte2028 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2028 }} €</td>
+      <td class="gasto">{{ totalImporte2028 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2028 - totalImporte2028 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2028 - totalImporte2028 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2028 - totalImporte2028 <= totalObjetivo2028"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2028 - totalImporte2028 > totalObjetivo2028"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2028 }} €</td>
     </tr>
     <tr>
       <td>2029</td>
-      <td>{{ totalIngreso2029 }} €</td>
-      <td>{{ totalImporte2029 }} €</td>
-      <td>{{ totalIngreso2029 - totalImporte2029 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2029 }} €</td>
+      <td class="gasto">{{ totalImporte2029 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2029 - totalImporte2029 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2029 - totalImporte2029 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2029 - totalImporte2029 <= totalObjetivo2029"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2029 - totalImporte2029 > totalObjetivo2029"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2029 }} €</td>
     </tr>
     <tr>
       <td>2030</td>
-      <td>{{ totalIngreso2030 }} €</td>
-      <td>{{ totalImporte2030 }} €</td>
-      <td>{{ totalIngreso2030 - totalImporte2030 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2030 }} €</td>
+      <td class="gasto">{{ totalImporte2030 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2030 - totalImporte2030 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2030 - totalImporte2030 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2030 - totalImporte2030 <= totalObjetivo2030"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2030 - totalImporte2030 > totalObjetivo2030"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2030 }} €</td>
     </tr>
     <tr>
       <td>2031</td>
-      <td>{{ totalIngreso2031 }} €</td>
-      <td>{{ totalImporte2031 }} €</td>
-      <td>{{ totalIngreso2031 - totalImporte2031 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2031 }} €</td>
+      <td class="gasto">{{ totalImporte2031 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2031 - totalImporte2031 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2031 - totalImporte2031 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2031 - totalImporte2031 <= totalObjetivo2031"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2031 - totalImporte2031 > totalObjetivo2031"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2031 }} €</td>
     </tr>
     <tr>
       <td>2032</td>
-      <td>{{ totalIngreso2032 }} €</td>
-      <td>{{ totalImporte2032 }} €</td>
-      <td>{{ totalIngreso2032 - totalImporte2032 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2032 }} €</td>
+      <td class="gasto">{{ totalImporte2032 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2032 - totalImporte2032 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2032 - totalImporte2032 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2032 - totalImporte2032 <= totalObjetivo2032"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2032 - totalImporte2032 > totalObjetivo2032"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2032 }} €</td>
     </tr>
     <tr>
       <td>2033</td>
-      <td>{{ totalIngreso2033 }} €</td>
-      <td>{{ totalImporte2033 }} €</td>
-      <td>{{ totalIngreso2033 - totalImporte2033 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2033 }} €</td>
+      <td class="gasto">{{ totalImporte2033 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2033 - totalImporte2033 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2033 - totalImporte2033 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2033 - totalImporte2033 <= totalObjetivo2033"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2033 - totalImporte2033 > totalObjetivo2033"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2033 }} €</td>
     </tr>
     <tr>
       <td>2034</td>
-      <td>{{ totalIngreso2034 }} €</td>
-      <td>{{ totalImporte2034 }} €</td>
-      <td>{{ totalIngreso2034 - totalImporte2034 }} €</td>
-      <td></td>
+      <td class="ingreso">{{ totalIngreso2034 }} €</td>
+      <td class="gasto">{{ totalImporte2034 }} €</td>
+      <td
+        [ngStyle]="{
+          color: totalIngreso2034 - totalImporte2034 > 0 ? 'blue' : 'red'
+        }"
+      >
+        {{ totalIngreso2034 - totalImporte2034 }} €
+      </td>
+      <td>
+        <img
+          *ngIf="totalIngreso2034 - totalImporte2034 <= totalObjetivo2034"
+          style="width: 25px"
+          src="\assets\images\estrellaGris.png"
+          title="Objetivo no superado"
+        />
+        <img
+          *ngIf="totalIngreso2034 - totalImporte2034 > totalObjetivo2034"
+          style="width: 25px"
+          src="\assets\images\estrella.png"
+          title="Objetivo superado"
+        />
+      </td>
+      <td *ngIf="false">{{ totalObjetivo2034 }} €</td>
     </tr>
   </table>
 </div>

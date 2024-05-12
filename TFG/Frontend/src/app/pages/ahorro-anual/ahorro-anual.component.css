@@ -1,15 +1,14 @@
-.div-table{
+.div-table {
   width: 60%;
 }
 
-h2{
+h2 {
   text-align: center;
   padding: 30px;
 }
 
 .resumen-table {
   width: 100%;
-  border-collapse: collapse;
 }
 
 .resumen-header {
@@ -29,3 +28,14 @@ h2{
   text-align: center;
 }
 
+.ingreso {
+  color: green;
+}
+
+.gasto {
+  color: red;
+}
+
+.img {
+  width: 2px;
+}
