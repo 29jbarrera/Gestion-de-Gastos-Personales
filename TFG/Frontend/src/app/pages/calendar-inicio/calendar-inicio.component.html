@@ -4,6 +4,7 @@
     En la aplicación existe un total de {{ totalUsuarios }} usuarios
     registrados.
   </p>
+  <a [routerLink]="'/inicio/listado-usuarios'">Listado usuarios</a>
 </div>
 
 <app-anual></app-anual>
@@ -82,8 +83,6 @@
     </div>
   </div>
 </div>
-<div class="foot">
-  <app-footer></app-footer>
-</div>
+<app-footer></app-footer>
 
 <router-outlet></router-outlet>

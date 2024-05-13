@@ -1,12 +1,18 @@
 <div class="nav">
   <a
     class="inicio"
-    [routerLink]="'/inicio'"
+    routerLink="/inicio"
     routerLinkActive="router-link-active"
+    [routerLinkActiveOptions]="{exact: true}"
   >
     Inicio
   </a>
-  <button (click)="navigateToAhorroAnual()">
+  <button
+    class="resumen"
+    (click)="navigateToAhorroAnual()"
+    routerLink="/inicio/ahorro-anual"
+    routerLinkActive="router-link-active"
+  >
     Resumen Anual
   </button>
   <h1 class="year">{{ yearLocalStore }}</h1>

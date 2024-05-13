@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 import { of } from 'rxjs';
 
 import { enviroment } from '../environments/enviroment';
-import { Objetivo } from './../interfaces/objetivo-interface';
 
 import { DatosEnLocalStorageService } from './datos-en-local-storage.service';
+import { Objetivo } from '../interfaces/objetivo-interface';
 
 const base_url = enviroment.base_url;
 
@@ -85,6 +85,21 @@ export class ObjetivoService {
       headers,
     });
   }
+
+  eliminarObjetivo(objetivoId: string): Observable<any> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return of(null);
+    }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-token': token,
+    });
+
+    return this.http.delete(`${base_url}/objetivo/${objetivoId}`, { headers });
+  }
+
 
   // OBJETIVOS POR AÑOS RESUMEN
 

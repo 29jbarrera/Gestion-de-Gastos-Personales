@@ -177,19 +177,6 @@ h3 {
   padding: 10px;
 }
 
-.gasto-container-lista p {
-  margin: 0;
-}
-
-.fecha-gasto,
-.importe {
-  margin: 0;
-}
-
-.gasto-container .importe {
-  margin-right: -170px;
-}
-
 /* CONTAINER DEL LISTADO DE INGRESOS */
 
 .ingreso-container {
@@ -230,7 +217,7 @@ h3 {
 
 /* APLICAR COLORES A IMPORTES DIFERENTES */
 
-#importe-gasto{
+#importe-gasto {
   color: red;
 }
 
@@ -238,8 +225,13 @@ h3 {
   color: green;
 }
 
-.objetivo-container .importe {
+.objetivo {
   color: blue;
+  margin-left: 50px;
+}
+
+.objetivo-container {
+  padding-right: 10px;
 }
 
 .button-papelera {
@@ -273,7 +265,7 @@ h3 {
 h1 {
   padding-top: 50px;
   padding-bottom: 40px;
-  font-size: 50px;
+  font-size: 42px;
 }
 p {
   font-size: 20px;
@@ -317,7 +309,7 @@ p {
   justify-content: center;
   align-items: center;
   padding-top: 40px;
-  font-weight: bold;
+  font-weight: 600;
   width: 100%;
 }
 
@@ -336,4 +328,17 @@ p {
 .mensaje-por-ahorro {
   display: flex;
   margin: 0 auto;
+  font-weight: 600;
+}
+
+.pulgar-arriba{
+  width: 80px;
+  margin-top: -35px;
+  margin-left: 20px;
+}
+
+.pulgar-abajo{
+  width: 80px;
+  margin-top: 10px;
+  margin-left: 20px;
 }

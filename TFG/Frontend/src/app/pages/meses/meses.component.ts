@@ -148,6 +148,18 @@ export class MesesComponent implements OnInit {
     );
   }
 
+  // ELIMINAR OBJETIVO
+  eliminarObjetivo(objetivoId: string): void {
+    this.ObjetivoService.eliminarObjetivo(objetivoId).subscribe(
+      (response) => {
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Error al eliminar objetivo', error);
+      }
+    );
+  }
+
   // ACTUALIZAR OBJETIVO
 
   actualizarObjetivo(

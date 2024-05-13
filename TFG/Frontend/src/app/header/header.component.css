@@ -4,19 +4,10 @@
   height: 18vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  justify-content: space-around;
   color: var(--color-background);
   border-bottom: 6px solid #dce2f0;
 }
 
-.nav .inicio,
-.nav .año,
-.nav .nombre-usuario {
-  flex: 1;
-  text-align: center;
-  justify-content: center;
-}
 
 button {
   background-color: transparent;
@@ -24,7 +15,7 @@ button {
   border: none;
 }
 
-.inicio {
+.inicio, .resumen {
   color: var(--color-background);
   text-decoration: none;
   transition: transform 0.4s;
@@ -35,8 +26,39 @@ button {
   transform: scale(1.2);
 }
 
+.resumen{
+  margin-left: -100px;
+}
+
+.resumen:hover {
+  transform: scale(1.2);
+}
+
+.router-link-active {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.router-link-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-background);
+  transition: all 1s ease;
+}
+
+.router-link-active:hover::after {
+  width: 0;
+}
+
+
 .year {
   font-size: 50px;
+  margin-left: 377px;
 }
 
 .nombre-usuario {

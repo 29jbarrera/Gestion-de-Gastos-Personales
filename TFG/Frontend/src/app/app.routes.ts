@@ -10,6 +10,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HeaderComponent } from './header/header.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
 import { AhorroAnualComponent } from './pages/ahorro-anual/ahorro-anual.component';
+import { ListadoUserComponent } from './pages/listado-user/listado-user.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'noviembre', component: MesesComponent },
       { path: 'diciembre', component: MesesComponent },
       { path: 'ahorro-anual', component: AhorroAnualComponent },
+      { path: 'listado-usuarios', component: ListadoUserComponent },
     ],
   },
   { path: 'register', component: RegisterComponent },

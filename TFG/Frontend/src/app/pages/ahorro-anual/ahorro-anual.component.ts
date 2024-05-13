@@ -8,6 +8,7 @@ import { ObjetivoService } from '../../services/objetivo.service';
 import { DatosEnLocalStorageService } from '../../services/datos-en-local-storage.service';
 import { Ingreso } from '../../interfaces/ingreso-interface';
 import { FooterComponent } from '../../footer/footer.component';
+import { Ahorro } from '../../interfaces/ahorro-interface';
 
 @Component({
   selector: 'app-ahorro-anual',
@@ -20,6 +21,7 @@ export class AhorroAnualComponent implements OnInit {
   gastos: Gasto[] = [];
   ingresos: Ingreso[] = [];
   objetivos: Objetivo[] = [];
+  ahorro: Ahorro[] = [];
 
   totalImporte2024: number = 0;
   totalImporte2025: number = 0;

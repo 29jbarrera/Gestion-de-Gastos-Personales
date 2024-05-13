@@ -6,11 +6,10 @@ import { DatosEnLocalStorageService } from '../services/datos-en-local-storage.s
 import { AnualComponent } from '../pages/anual/anual.component';
 import { AnualService } from '../services/anual.service';
 
-
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, MesesComponent,AnualComponent],
+  imports: [RouterModule, MesesComponent, AnualComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -22,7 +21,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private UsuarioService: UsuarioService,
     private DatosEnLocalStorageService: DatosEnLocalStorageService,
-    private AnualService: AnualService,
+    private AnualService: AnualService
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
