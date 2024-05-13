@@ -4,3 +4,31 @@
   justify-content: center;
   text-align: center;
 }
+
+.div-table {
+  width: 60%;
+}
+
+.listado h4 {
+  text-align: center;
+  padding: 30px;
+}
+
+.header-table {
+  font-weight: bold;
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 10px;
+  height: 40px;
+  border-bottom: 1px solid #ddd;
+}
+
+.div-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.div-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}

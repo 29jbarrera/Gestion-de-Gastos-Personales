@@ -20,7 +20,29 @@ body {
   background-color: #f4f4f4;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+}
+
+.listado-usuarios {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-secondary);
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.listado-usuarios:hover {
+  background-color: #5594f0;
+}
+
+.listado-usuarios:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
 
 .calendar {
   display: flex;

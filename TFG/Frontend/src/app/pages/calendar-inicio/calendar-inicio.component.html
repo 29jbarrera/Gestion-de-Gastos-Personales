@@ -1,10 +1,6 @@
 <div class="admin-container" *ngIf="isAdmin">
   <p>Ha iniciado sesión con rol de administrador.</p>
-  <p>
-    En la aplicación existe un total de {{ totalUsuarios }} usuarios
-    registrados.
-  </p>
-  <a [routerLink]="'/inicio/listado-usuarios'">Listado usuarios</a>
+  <a class="listado-usuarios" [routerLink]="'/inicio/listado-usuarios'"> Ver listado de usuarios</a>
 </div>
 
 <app-anual></app-anual>

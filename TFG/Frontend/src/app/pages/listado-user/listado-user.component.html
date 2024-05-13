@@ -1,8 +1,19 @@
 <div class="listado">
-  <h4>Listado de usuarios registrado</h4>
-  <table>
+  <h4>Listado de usuarios registrados</h4>
+  <table class="div-table">
+    <tr class="header-table">
+      <th>NOMBRE</th>
+      <th>EMAIL</th>
+      <th>FECHA DE ALTA</th>
+    </tr>
+
+    <tr *ngFor="let usuario of totalUsuarios">
+      <td>{{ usuario.nombre }}</td>
+      <td>{{ usuario.email }}</td>
+      <td>{{ usuario.fecha }}</td>
+    </tr>
     <tr>
-      <th></th>
+      <td><b>Total de usuarios: {{ totalUsuarios.length }}</b></td>
     </tr>
   </table>
 </div>

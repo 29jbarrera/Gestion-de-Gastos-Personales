@@ -126,5 +126,29 @@ export class UsuarioService {
     );
   }
 
+  listadoTotalUsuario(): Observable<any> {
+    const token = this.DatosEnLocalStorageService.obtenerToken();
+    if (!token) {
+      return of(null);
+    }
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-token': token,
+    });
+
+    return this.http.get(`${base_url}/usuarios`, { headers }).pipe(
+      map((response: any) => {
+        // Mapea la respuesta para devolver solo el nombre, email y fecha de cada usuario
+        const usuarios = response.usuario.map((usuario: any) => {
+          return {
+            nombre: usuario.nombre,
+            email: usuario.email,
+            fecha: usuario.Fecha,
+          };
+        });
+        return usuarios;
+      })
+    );
+  }
 }

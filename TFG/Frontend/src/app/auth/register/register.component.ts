@@ -90,13 +90,13 @@ export class RegisterComponent {
           title: 'Éxito',
           text: 'El usuario se ha creado exitosamente.',
           showConfirmButton: false,
-          timer: 5000,
+          timer: 4000,
         });
 
         this.FormSubmitted = true;
         setTimeout(() => {
           this.router.navigate(['/']);
-        }, 4800);
+        }, 3800);
       },
       (err) => {
         Swal.fire('Error', err.error.msg, 'error');
